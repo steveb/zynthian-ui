@@ -37,15 +37,20 @@ class zynthian_engine_setbfree(zynthian_engine):
 	# ---------------------------------------------------------------------------
 
 	drawbar_values=[['0','1','2','3','4','5','6','7','8'], [128,120,104,88,72,56,40,24,8]]
+	# combinations of off/slow/fast for horn/drum
+	rotary_speed_values = [
+		['o o','o s','o f','s o','s s','s f','f o','f s','f f'],
+		[0, 1, 2, 3, 4, 5, 6, 7, 8]
+	]
 
 	# MIDI Controllers
 	_ctrls=[
 		['volume',1,96],
 #		['swellpedal 2',11,96],
 		['percussion on/off',80,'off','off|on','perc'],
-		['rotary speed',91,'off','off|chr|trm|chr','rotaryspeed'],
+		['rotary speed',65,'o o',rotary_speed_values,'rotaryspeed'],
 #		['rotary speed',91,64],
-#		['rotary speed toggle',64,0],
+		['rotary toggle',64,'off','off|on','rotarytoggle'],
 		['vibrato on/off',92,'off','off|on','vibratoupper'],
 		['16',70,'8',drawbar_values,'drawbar_1'],
 		['5 1/3',71,'8',drawbar_values,'drawbar_2'],
@@ -64,13 +69,13 @@ class zynthian_engine_setbfree(zynthian_engine):
 		['overdrive on/off',23,'off','off|on','overdrive'],
 		['overdrive character',93,64,127,'overdrive_char'],
 		['overdrive inputgain',21,64,127,'overdrive_igain'],
-		['overdrive outputgain',22,64,127,'overdrive_ogain']
+		['overdrive outputgain',22,64,127,'overdrive_ogain'],
 		['reverb mix',99,13,127,'reverb_mix']
 	]
 
 	# Controller Screens
 	_ctrl_screens=[
-		['main',['volume','reverb mix','rotary speed']],
+		['main',['volume','reverb mix','rotary speed','rotary toggle']],
 		['drawbars low',['16','5 1/3','8','4']],
 		['drawbars hi',['2 2/3','2','1 3/5','1 1/3']],
 		['vibrato',['drawbar 1','vibrato on/off','vibrato selector']],
@@ -129,10 +134,6 @@ class zynthian_engine_setbfree(zynthian_engine):
 				zctrl=zctrls[zcname]
 				zctrl.value=layer.preset_info[3][zctrl.symbol]
 				#logging.debug("%s => %s (%s)" % (zctrl.name,zctrl.symbol,zctrl.value))
-				if zctrl.symbol=='rotaryspeed':
-					if zctrl.value=='tremolo': zctrl.value='trm'
-					elif zctrl.value=='chorale': zctrl.value='chr'
-					else: zctrl.value='off'
 			except:
 				#logging.debug("No preset value for control %s" % zctrl.name)
 				pass
