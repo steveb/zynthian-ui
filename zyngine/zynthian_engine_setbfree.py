@@ -65,14 +65,16 @@ class zynthian_engine_setbfree(zynthian_engine):
 		['overdrive character',93,64,127,'overdrive_char'],
 		['overdrive inputgain',21,64,127,'overdrive_igain'],
 		['overdrive outputgain',22,64,127,'overdrive_ogain']
+		['reverb mix',99,13,127,'reverb_mix']
 	]
 
 	# Controller Screens
 	_ctrl_screens=[
-		['main',['volume','percussion on/off','rotary speed','vibrato on/off']],
+		['main',['volume','reverb mix','rotary speed']],
 		['drawbars low',['16','5 1/3','8','4']],
 		['drawbars hi',['2 2/3','2','1 3/5','1 1/3']],
-		['percussion & vibrato',['drawbar 1','vibrato selector','percussion decay','percussion harmonic']],
+		['vibrato',['drawbar 1','vibrato on/off','vibrato selector']],
+		['percussion',['percussion on/off','percussion decay','percussion harmonic']],
 		['overdrive',['overdrive on/off','overdrive character','overdrive inputgain','overdrive outputgain']]
 	]
 
