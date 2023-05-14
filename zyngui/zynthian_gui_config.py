@@ -554,7 +554,7 @@ if "zynthian_gui.py" in sys.argv[0]:
 		if wiring_layout!="EMULATOR" and wiring_layout!="DUMMIES" and not force_enable_cursor:
 			top.config(cursor="none")
 		else:
-			top.config(cursor="cross")
+			top.config(cursor="arrow")
 
 		#------------------------------------------------------------------------------
 		# Global Variables
